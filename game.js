@@ -13,7 +13,7 @@ function getRandomInt(min, max) {
 
 function playRound(playerSelection, computerSelection){
 
-    if (computerSelection == playerSelection)
+    if (computerSelection == playerSelection.toLowerCase())
     {
         return "It's a Tie!";
     }
@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection){
 
     else
     {
-        return "Please type a valid input.";
+        return "Error: Not a Valid Game";
     }
 
 
@@ -58,7 +58,18 @@ function playRound(playerSelection, computerSelection){
 function game(){
     for(let i = 0; i < 5; i++)
     {
-        let userInput = prompt("Type in Rock, Paper, or Scissors", "Type Here");
+
+        let userInput = "";
+
+        while(userInput.toLowerCase() != "rock" && userInput.toLowerCase() != "paper" && userInput.toLowerCase() != "scissors")
+        {
+            userInput = prompt("Type in Rock, Paper, or Scissors", "Type Here");
+
+            if (userInput.toLowerCase() != "rock" && userInput.toLowerCase() != "paper" && userInput.toLowerCase() != "scissors")
+            {
+                alert("Error: Please enter a correct input")
+            }
+        }
 
         let cpuInput = computerPlay();
 
