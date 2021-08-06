@@ -18,42 +18,54 @@ function playRound(playerSelection, computerSelection){
         return "It's a Tie!";
     }
 
-    if (computerSelection.toLowerCase() == "rock" && playerSelection == "paper") {
+    if (computerSelection == "rock" && playerSelection.toLowerCase() == "paper") {
         return "Player Wins! Paper beats Rock.";
     }
 
-    if (computerSelection.toLowerCase() == "rock" && playerSelection == "scissors")
+    if (computerSelection == "rock" && playerSelection.toLowerCase() == "scissors")
     {
         return "Computer Wins! Rock beats Scissors.";
     }
 
-    if (computerSelection.toLowerCase() == "paper" && playerSelection == "scissors")
+    if (computerSelection == "paper" && playerSelection.toLowerCase() == "scissors")
     {
         return "Player Wins! Scissors beats Paper.";
     }
 
-    if (computerSelection.toLowerCase() == "paper" && playerSelection == "rock")
+    if (computerSelection == "paper" && playerSelection.toLowerCase() == "rock")
     {
         return "Computer Wins! Paper beats Rock.";
     }
 
-    if (computerSelection.toLowerCase() == "scissors" && playerSelection == "rock")
+    if (computerSelection == "scissors" && playerSelection.toLowerCase() == "rock")
     {
         return "Player Wins! Rock beats Scissors.";
     }
 
-    if (computerSelection.toLowerCase() == "scissors" && playerSelection == "paper")
+    if (computerSelection == "scissors" && playerSelection.toLowerCase() == "paper")
     {
         return "Computer Wins! Scissors beats Paper.";
     }
+
+    else
+    {
+        return "Please type a valid input.";
+    }
+
+
 }
 
-const playerSelection = "scissors";
-const computerSelection = computerPlay();
+function game(){
+    for(let i = 0; i < 5; i++)
+    {
+        let userInput = prompt("Type in Rock, Paper, or Scissors", "Type Here");
 
-console.log("player: " + playerSelection);
-console.log("computer: " + computerSelection);
+        let cpuInput = computerPlay();
 
-let round = playRound(playerSelection,computerSelection);
+        let result = playRound(userInput,cpuInput);
 
-console.log(round);
+        console.log(result);
+    }
+}
+
+game();
