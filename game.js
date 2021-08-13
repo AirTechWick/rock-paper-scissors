@@ -12,7 +12,6 @@ function getRandomInt(min, max)
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-
 function playRound(playerSelection, computerSelection)
 {
 
@@ -82,12 +81,33 @@ function game()
 
 // Event Listeners
 
-const btn = document.querySelector('.btn');
+const rockBtn = document.querySelector('.rockButton');
 
-btn.addEventListener('click', () => {
-    alert("Yo");
-}
+rockBtn.addEventListener('click', function(e) 
+    {
+        let gameResults = playRound("rock",computerPlay());
+
+        let text = document.querySelector('.resultsText').textContent = gameResults;
+    }
 );
 
+const paperBtn = document.querySelector('.paperButton');
 
-game();
+paperBtn.addEventListener('click', function(e) 
+    {
+        let gameResults = playRound("paper", computerPlay());
+
+        document.querySelector('.resultsText').textContent = gameResults;
+    }
+);
+
+const scissorsBtn = document.querySelector('.scissorsButton');
+
+scissorsBtn.addEventListener('click', function(e) 
+    {
+        let gameResults = playRound("scissors", computerPlay());
+
+        document.querySelector('.resultsText').textContent = gameResults;
+    }
+);
+ 
