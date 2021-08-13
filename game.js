@@ -1,17 +1,20 @@
-function computerPlay(){
+function computerPlay()
+{
     let decisions = ["rock","paper","scissors"]; // all in lower case
     let randomIndex = getRandomInt(0,decisions.length);
     return decisions[randomIndex];
 }
 
-function getRandomInt(min, max) {
+function getRandomInt(min, max) 
+{
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
 
 
-function playRound(playerSelection, computerSelection){
+function playRound(playerSelection, computerSelection)
+{
 
     if (computerSelection == playerSelection.toLowerCase())
     {
@@ -55,11 +58,10 @@ function playRound(playerSelection, computerSelection){
 
 }
 
-function game(){
-    for(let i = 0; i < 5; i++)
-    {
-
-        let userInput = "";
+function game()
+{
+    
+    let userInput = "";
 
         while(userInput.toLowerCase() != "rock" && userInput.toLowerCase() != "paper" && userInput.toLowerCase() != "scissors")
         {
@@ -76,7 +78,16 @@ function game(){
         let result = playRound(userInput,cpuInput);
 
         console.log(result);
-    }
 }
+
+// Event Listeners
+
+const btn = document.querySelector('.btn');
+
+btn.addEventListener('click', () => {
+    alert("Yo");
+}
+);
+
 
 game();
