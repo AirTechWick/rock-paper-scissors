@@ -1,3 +1,8 @@
+// GLOBALS
+let PLAYER = 0;
+let COMPUTER = 0;
+
+
 function computerPlay()
 {
     let decisions = ["rock","paper","scissors"]; // all in lower case
@@ -20,32 +25,47 @@ function playRound(playerSelection, computerSelection)
         return "It's a Tie!";
     }
 
-    if (computerSelection == "rock" && playerSelection.toLowerCase() == "paper") {
+    if (computerSelection == "rock" && playerSelection.toLowerCase() == "paper") 
+    {
+        
+        addToPlayerScore();
+
         return "Player Wins! Paper beats Rock.";
     }
 
     if (computerSelection == "rock" && playerSelection.toLowerCase() == "scissors")
     {
+        addToComputerScore();
+
         return "Computer Wins! Rock beats Scissors.";
     }
 
     if (computerSelection == "paper" && playerSelection.toLowerCase() == "scissors")
     {
+        addToPlayerScore();
+
         return "Player Wins! Scissors beats Paper.";
     }
 
     if (computerSelection == "paper" && playerSelection.toLowerCase() == "rock")
     {
+        addToComputerScore();
+
         return "Computer Wins! Paper beats Rock.";
     }
 
     if (computerSelection == "scissors" && playerSelection.toLowerCase() == "rock")
     {
+        addToPlayerScore();
+
         return "Player Wins! Rock beats Scissors.";
     }
 
     if (computerSelection == "scissors" && playerSelection.toLowerCase() == "paper")
     {
+
+        addToComputerScore();
+
         return "Computer Wins! Scissors beats Paper.";
     }
 
@@ -53,61 +73,122 @@ function playRound(playerSelection, computerSelection)
     {
         return "Error: Not a Valid Game";
     }
-
-
 }
 
-function game()
+// Query Selectors
+
+const rockBtn = document.querySelector('.rockButton');
+const paperBtn = document.querySelector('.paperButton');
+const scissorsBtn = document.querySelector('.scissorsButton');
+
+function checkGame()
 {
-    
-    let userInput = "";
+    const scoreToWin = 5;
 
-        while(userInput.toLowerCase() != "rock" && userInput.toLowerCase() != "paper" && userInput.toLowerCase() != "scissors")
-        {
-            userInput = prompt("Type in Rock, Paper, or Scissors", "Type Here");
+    if (PLAYER == scoreToWin)
+    {
+        window.alert("Player Wins the Game!");
 
-            if (userInput.toLowerCase() != "rock" && userInput.toLowerCase() != "paper" && userInput.toLowerCase() != "scissors")
-            {
-                alert("Error: Please enter a correct input")
-            }
-        }
+        PLAYER = 0;
+        COMPUTER = 0;
 
-        let cpuInput = computerPlay();
+    }
 
-        let result = playRound(userInput,cpuInput);
+    if (COMPUTER == scoreToWin)
+    {
+        window.alert("Computer Wins the Game!");
 
-        console.log(result);
+        PLAYER = 0;
+        COMPUTER = 0;
+    }
 }
+
+function addToPlayerScore()
+{
+    PLAYER++;
+}
+
+function addToComputerScore()
+{
+    COMPUTER++;
+}
+
 
 // Event Listeners
 
-const rockBtn = document.querySelector('.rockButton');
 
 rockBtn.addEventListener('click', function(e) 
     {
-        let gameResults = playRound("rock",computerPlay());
+        const playerSelection = "rock";
 
-        let text = document.querySelector('.resultsText').textContent = gameResults;
+        const computerSelection = computerPlay();
+
+        let gameResults = playRound(playerSelection,computerSelection);
+
+        document.querySelector('.playerResults').textContent = "Player: " + playerSelection;
+
+        document.querySelector('.playerScore').textContent = "P " + PLAYER.toString();
+
+
+        document.querySelector('.computerResults').textContent = "Computer: " + computerSelection;
+
+        document.querySelector('.computerScore').textContent = "C " + COMPUTER.toString();
+
+
+
+        document.querySelector('.resultsText').textContent = gameResults;
+
+        checkGame();
     }
 );
 
-const paperBtn = document.querySelector('.paperButton');
 
 paperBtn.addEventListener('click', function(e) 
     {
-        let gameResults = playRound("paper", computerPlay());
+        const playerSelection = "paper";
+
+        const computerSelection = computerPlay();
+
+        let gameResults = playRound(playerSelection, computerSelection);
+
+        document.querySelector('.playerResults').textContent = "Player: " + playerSelection;
+
+        document.querySelector('.playerScore').textContent = "P " + PLAYER.toString();
+
+
+        document.querySelector('.computerResults').textContent = "Computer: " + computerSelection;
+
+        document.querySelector('.computerScore').textContent = "C " + COMPUTER.toString();
+
 
         document.querySelector('.resultsText').textContent = gameResults;
+
+        checkGame();
     }
 );
 
-const scissorsBtn = document.querySelector('.scissorsButton');
 
 scissorsBtn.addEventListener('click', function(e) 
     {
-        let gameResults = playRound("scissors", computerPlay());
+        const playerSelection = "scissors";
+
+        const computerSelection = computerPlay();
+
+        let gameResults = playRound(playerSelection, computerSelection);
+
+        document.querySelector('.playerResults').textContent = "Player: " + playerSelection;
+
+        document.querySelector('.playerScore').textContent = "P " + PLAYER.toString();
+
+
+
+        document.querySelector('.computerResults').textContent = "Computer: " + computerSelection;
+
+        document.querySelector('.computerScore').textContent = "C " + COMPUTER.toString();
+
 
         document.querySelector('.resultsText').textContent = gameResults;
+    
+        checkGame();
     }
 );
- 
